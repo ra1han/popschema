@@ -29,7 +29,8 @@ def retrieve_text(fk_file, fk_column):
 def main():
     schema_file = 'sales.json'
     record_count = 10
-    with open('schema/sales.json', 'r') as file:
+
+    with open(f'schema/{schema_file}', 'r') as file:
         schema = json.load(file)
 
     locale_list = ['en-US']
