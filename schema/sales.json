@@ -1,0 +1,16 @@
+{
+    "columns":{
+        "id":{
+            "provider":"uuid"
+        },
+        "customer_id":{
+            "fk_provider":{
+                "fk_file": "customer.csv",
+                "fk_column": "id"
+            }
+        },
+        "sales":{
+            "provider":"float_100_10000"
+        }
+    }
+}

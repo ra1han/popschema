@@ -1,0 +1,16 @@
+{
+    "columns":{
+        "id":{
+            "provider":"uuid"
+        },
+        "first_name":{
+            "provider":"first_name"
+        },
+        "last_name":{
+            "provider":"last_name"
+        },
+        "gender":{
+            "provider":"gender"
+        }
+    }
+}
