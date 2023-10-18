@@ -1,4 +1,5 @@
 {
-    "file":"vendor.json",
-    "count":100
+    "file":"sales.json",
+    "count":100,
+    "locale": ["en-US"]
 }
