@@ -5,20 +5,7 @@ import uuid
 import custom_providers
 import json
 import pandas as pd
-
-def gen_text(provider):
-    code = f"""
-fake = Faker()
-fake.add_provider(custom_providers.float_provider)
-fake.add_provider(custom_providers.gender_provider)
-fake.add_provider(custom_providers.uuid_provider)
-val=fake.{provider}()
-"""
-    loc = {}
-    exec(code, globals(), loc)
-    val = loc['val']
-
-    return val
+from generator import Generator
 
 def retrieve_text(fk_file, fk_column):
     df = pd.read_csv(f'data/{fk_file}', delimiter='\t')
@@ -27,15 +14,18 @@ def retrieve_text(fk_file, fk_column):
     return random_value
 
 def main():
-    schema_file = 'sales.json'
-    record_count = 10
+
+    with open('config.json', "r") as json_file:
+        config_data = json.load(json_file)
+
+    schema_file = config_data["file"]
+    record_count = config_data["count"]
 
     with open(f'schema/{schema_file}', 'r') as file:
         schema = json.load(file)
 
     locale_list = ['en-US']
-    fake = Faker(locale_list)
-    fake.add_provider(custom_providers.gender_provider)
+    generator = Generator(locale=locale_list)
 
     column_names = schema["columns"].keys()
     data = pd.DataFrame(columns=column_names)
@@ -50,7 +40,7 @@ def main():
                 row[column_name] = retrieve_text(fk_file, fk_column)
             else:
                 provider = schema["columns"][column_name]['provider']
-                row[column_name] = gen_text(provider)
+                row[column_name] = generator.generate_text(provider)
 
         data = pd.concat([data, pd.DataFrame([row])], ignore_index=True)
 
