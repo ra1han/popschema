@@ -9,8 +9,14 @@
                 "fk_column": "id"
             }
         },
-        "sales":{
-            "provider":"float_100_10000"
+        "channel_id":{
+            "fk_provider":{
+                "fk_file": "communication_channel.csv",
+                "fk_column": "id"
+            }
+        },
+        "interaction_text":{
+            "provider": "text"
         }
     }
 }

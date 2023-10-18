@@ -1,0 +1,16 @@
+{
+    "columns":{
+        "id":{
+            "provider":"uuid4"
+        },
+        "vendor":{
+            "provider":"company"
+        },
+        "phone":{
+            "provider":"phone_number"
+        },
+        "address":{
+            "provider":"address"
+        }
+    }
+}

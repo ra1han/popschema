@@ -1,7 +1,7 @@
 {
     "columns":{
         "id":{
-            "provider":"uuid"
+            "provider":"uuid4"
         },
         "first_name":{
             "provider":"first_name"
